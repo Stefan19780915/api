@@ -1,0 +1,20 @@
+<h1 class="h3 mb-3 fw-normal mt-5">{{ title }}</h1>
+<form action="posts" method="POST">
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Post title</label>
+  <input type="text" name="title" value="{{titleBack}}" class="form-control {{invalidTitle}} {{noTitle}} {{invalid}}" id="exampleFormControlInput1" placeholder="Title">
+  <div id="exampleFormControlInput1" class="invalid-feedback">
+        {{msgNoTitle}} {{msgTitle}} {{msg}}
+      </div>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Post Body</label>
+  <textarea class="form-control {{noBody}} {{invalid}}" name="body" id="exampleFormControlTextarea1" rows="3" placeholder="Write here...">{{bodyBack}}</textarea>
+  <div id="exampleFormControlTextarea1" class="invalid-feedback">
+        {{msgNoBody}} {{msg}}
+      </div>
+</div>
+<input type="submit" value="Save Post" class="btn btn-primary btm-block">
+</form>
+
+</div>

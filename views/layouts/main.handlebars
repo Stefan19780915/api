@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css" type="text/css">
+<title>Posts</title>
+</head>
+<body>
+<header class="p-3 text-bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0">
+		  {{#if name}}
+          <li><a href="/api/posts" class="nav-link px-2 text-white">Posts</a></li>
+          <li><a href="/api/create" class="nav-link px-2 text-white">Create Post</a></li>
+		  {{else}}
+          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+		  {{/if}}
+        </ul>
+		
+		{{#if name}}
+		<div class=" d-flex col-10 col-sm-6 align-items-center justify-content-center mb-1 mb-lg-0 ">Welcome <a href="/api/profile" class="nav-link px-2 text-white">{{name}} {{surname}}</a></div>
+		{{/if}}
+        
+		<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+        </form>
+        <div class="text-end">
+		{{#if name}}
+		<form action="/api/logout?_method=DELETE" method="POST">
+		  	<button type="submit" class="btn btn-outline-light me-2">Logout</button>
+		</form>
+		  {{else}}
+          	<a href="/api/login" class="btn btn-outline-light me-2">Login</a>
+          	<a href="/api/register" class="btn btn-warning">Register</a>
+		 {{/if}}
+        </div>
+      </div>
+    </div>
+  </header>
+<div class="container">
+
+{{{body}}}
+
+</div>
+
+
+</body>
+</html>

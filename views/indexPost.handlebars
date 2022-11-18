@@ -1,0 +1,24 @@
+<h1 class="h3 mb-3 fw-normal mt-5">{{ title }}</h1>
+
+
+<div class="lists-group">
+{{#each adjustedData}}
+
+		<div class="card mb-3">
+			<div class="card-body">
+		<article class="blog-post-meta">
+        <h2 class="blog-post-title mb">{{this.title}}</h2>
+        <p class="blog-post-meta"> {{ this.created }} by <a href="#">{{this.name}} {{this.surname}}</a></p>
+
+        <p>{{this.body}}</p>
+		
+			{{#if user}}
+			<a href="/api/update/{{this.id}}"class="btn btn-secondary" >Update</a>
+			<a href="/api/delete/{{this.id}}" class="btn btn-danger" >Delete</a>
+			{{/if}}
+      	</article>
+			</div>
+		</div>
+				
+{{/each}}
+</div>

@@ -1,0 +1,169 @@
+
+
+{{#if success}}
+<div class="alert alert-success mt-3" role="alert">
+  {{success}}
+</div>
+{{/if}}
+<div class="row flex">
+  <div class="col-12 mb-3 mt-3">
+    <div class="card p-3">
+      <div class="e-navlist e-navlist--active-bg">
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link px-2 active" href="/api/profile"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Profile</span></a></li>
+          <li class="nav-item"><a class="nav-link px-2" href="#"><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
+		  <li class="nav-item"><a class="nav-link px-2" href="/api/admin"><i class="fa fa-pencil"></i><span>Admin</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="row">
+      <div class="col mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="e-profile">
+              <div class="row">
+                <div class="col-12 col-sm-auto mb-3">
+                  <div class="mx-auto" style="width: 140px;">
+                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                      <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                  <div class="text-center text-sm-left mb-2 mb-sm-0">
+                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{name}} {{surname}}</h4>
+                    <p class="mb-0">{{email}}</p>
+                    
+                    <div class="mt-2">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fa fa-fw fa-camera"></i>
+                        <span>Change Photo</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="text-center text-sm-right">
+                    <span class="badge badge-secondary" style="background-color: grey;">administrator</span>
+                    <div class="text-muted"><small>Joined {{joined}}</small></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="tab-content pt-3">
+                <div class="tab-pane active">
+                  <form class="form" action="/api/profile/update/{{id}}" method="POST">
+                    <div class="row">
+                      <div class="col">
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Full Name</label>
+                              <input class="form-control" type="text" name="name" placeholder="John" value="{{name}}">
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Surname</label>
+                              <input class="form-control" type="text" name="surname" placeholder="Smith" value="{{surname}}">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Email</label>
+                              <input class="form-control" type="text" name="email" placeholder="user@example.com" value="{{email}}">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+					
+                    <div class="row pt-3">
+                      <div class="col-12 col-sm-6 mb-3">
+                        <div class="mb-2"><b>Change Password</b></div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Current Password</label>
+                              <input class="form-control {{#if currentPassword}} is-invalid {{/if}} " id="currentPass"  type="password" name="currentPassword" placeholder="••••••">
+							  <div id="currentPass" class="invalid-feedback">
+       								{{currentPassword}}
+      						  </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>New Password</label>
+                              <input class="form-control {{#if newPassword}} is-invalid {{/if}}" id="newPass" type="password" name="newPassword" placeholder="••••••">
+							  <div id="newPass" class="invalid-feedback">
+       								{{newPassword}}
+      						  </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                              <input class="form-control" type="password" name="confirmPassword" placeholder="••••••"></div>
+                          </div>
+                        </div>
+                      </div>
+                      
+					  
+					  
+                    </div>
+                    <div class="row">
+                      <div class="col d-flex justify-content-end">
+                        <button class="btn btn-primary" type="submit">Save Changes</button>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
+
+  </div>
+</div>
+
+
+
+
+
+<h1 class="h3 mb-3 fw-normal">Your {{ title }}</h1>
+
+<div class="lists-group">
+{{#each adjustedData}}
+
+	<div class="card mb-3">
+		<div class="card-body">
+		<article class="blog-post-meta">
+        <h2 class="blog-post-title mb">{{this.title}}</h2>
+        <p class="blog-post-meta"> {{ this.created }} by <a href="#">{{this.name}} {{this.surname}}</a></p>
+
+        <p>{{this.body}}</p>
+		
+			
+			<a href="/api/update/{{this.id}}"class="btn btn-secondary" >Update</a>
+			<a href="/api/delete/{{this.id}}" class="btn btn-danger" >Delete</a>
+		
+      	</article>
+	</div>
+		</div>
+		
+		
+{{/each}}
+</div>
+
+

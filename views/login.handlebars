@@ -1,0 +1,28 @@
+<div class="text-center mt-5">
+<main class="form-signin w-50 m-auto">
+  <form action="login" method="POST">
+    <h1 class="h3 mb-3 fw-normal">Please Login</h1>
+	
+	{{#if error}}
+    <div>{{error}}</div>
+	{{/if}}
+	
+    <div class="form-floating">
+      <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
+  </form>
+</main>
+</div>
