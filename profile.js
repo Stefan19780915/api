@@ -30,6 +30,7 @@ class Profile {
 		const msgCurrent = req.query.param1;
 		const msgNew = req.query.param2;
 		const msgSuccess = req.query.param3;
+		const msgMissing = req.query.param4;
 		//console.log(msgCurrent, msgNew);
 		const userData = await this.getUserById(req.user[0].id);
 		const registered_at = this.getSqlDate(userData[0].registered_at);
@@ -51,7 +52,8 @@ class Profile {
 					surname: user[0].surname,
 					currentPassword: msgCurrent,
 					newPassword: msgNew,
-					success: msgSuccess
+					success: msgSuccess,
+					missing: msgMissing
 				});	
 		});	
 	}
@@ -66,6 +68,8 @@ class Profile {
 			} else if (req.body.newPassword != req.body.confirmPassword) {
 					//console.log('not the same');
 					res.redirect('/api/profile/?param2=New password does not match!');
+			} else if (!req.body.newPassword || !req.body.confirmPassword) {
+					res.redirect('/api/profile/?param4=Please fill in all fields!');
 			} else { 
 						
 		const newPassword = await this.bcrypt.hash(req.body.newPassword, 10);
